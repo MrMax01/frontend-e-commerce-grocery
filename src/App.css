@@ -1,5 +1,23 @@
-.App {
-  text-align: center;
+.bg-primary-color {
+  background-color: #377771;
+}
+
+.primary-button {
+  background-color: #377771;
+  border-color: #265752;
+}
+.primary-button:hover {
+  background-color: #4ce0b3 !important;
+  border: none;
+}
+
+.secondary-button {
+  background-color: #ed6a5e;
+  border-color: #c4574d;
+}
+.secondary-button:hover {
+  background-color: #ff8e72 !important;
+  border: none;
 }
 
 .App-logo {
@@ -11,21 +29,6 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
