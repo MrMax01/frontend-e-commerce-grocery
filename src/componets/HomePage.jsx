@@ -3,12 +3,24 @@ import headerImg from "../assets/headerImg.png";
 import vegetebles from "../assets/verdure.png";
 import fish from "../assets/pesci.png";
 import NavBar from "./NavBar";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getLastProducts } from "../redux/actions";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  const lastProducts = useSelector((state) => state.products.content);
+  const myToken = useSelector((state) => state.userToken.content);
+
+  useEffect(() => {
+    dispatch(getLastProducts());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <NavBar />
-      <Container>
+      <Container className="pb-5">
         <Card className="bg-dark text-white mb-5">
           <Card.Img src={headerImg} alt="Card image" height="500" className="object-fit-cover" />
           <Card.ImgOverlay className="d-flex flex-column justify-content-center align-items-center">
@@ -22,7 +34,7 @@ const HomePage = () => {
             </Button>
           </Card.ImgOverlay>
         </Card>
-        <Row>
+        <Row className="mb-2">
           <Col>
             <Card className="bg-dark text-white">
               <Card.Img src={vegetebles} alt="Card image" height="500" className="object-fit-cover" />
@@ -40,6 +52,32 @@ const HomePage = () => {
             </Card>
           </Col>
         </Row>
+        <Container fluid>
+          <h1>Ultimi Prodotti Caricati</h1>
+          <Row>
+            {lastProducts.length > 0 ? (
+              lastProducts.map((product, i) => (
+                <Col key={i}>
+                  <Card style={{ width: "100%" }}>
+                    <Card.Img variant="top" src={product.photo} />
+                    <Card.Body>
+                      <Card.Title>{product.name}</Card.Title>
+                      <Card.Title>${product.unit_price}/kg</Card.Title>
+                      <Card.Text>{product.description}</Card.Text>
+                      <Button variant="primary" disabled={myToken === null}>
+                        Aggiungi al carrello
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))
+            ) : (
+              <Card>
+                <h1>LOADING...</h1>
+              </Card>
+            )}
+          </Row>
+        </Container>
       </Container>
     </>
   );

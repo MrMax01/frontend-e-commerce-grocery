@@ -81,3 +81,37 @@ export const getMyProducts = (myToken) => {
     }
   };
 };
+
+export const getProducts = () => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/products");
+      if (resp.ok) {
+        let products = await resp.json();
+        console.log(products);
+        dispatch({ type: GET_PRODUCTS, payload: products.content });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
+
+export const getLastProducts = () => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/products?orderByDate=true");
+      if (resp.ok) {
+        let products = await resp.json();
+        console.log(products);
+        dispatch({ type: GET_PRODUCTS, payload: products.content });
+      } else {
+        console.log("error");
+        alert("Errore nel reperimento dei dati clienti ");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
