@@ -2,6 +2,10 @@ export const GET_ME = "GET_ME";
 export const DELETE_ME = "DELETE_ME";
 export const GET_AUTHORIZATION = "GET_AUTHORIZATION";
 export const DELETE_AUTHORIZATION = "DELETE_AUTHORIZATION";
+export const GET_MY_PRODUCT = "GET_MY_PRODUCT";
+export const REMOVE_MY_PRODUCT = "REMOVE_MY_PRODUCT";
+export const ADD_MY_PRODUCT = "ADD_MY_PRODUCT";
+export const GET_PRODUCTS = "GET_PRODUCTS";
 
 export const login = (emailPAss) => {
   return async (dispatch, getState) => {
@@ -56,3 +60,24 @@ export const clearMyProfile = () => ({
   type: DELETE_ME,
   payload: null,
 });
+
+//lista dei prodotti del supplier
+export const getMyProducts = (myToken) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/me", {
+        headers: {
+          Authorization: "Bearer " + myToken,
+        },
+      });
+      if (resp.ok) {
+        let me = await resp.json();
+        console.log(me);
+        dispatch({ type: GET_ME, payload: me });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
