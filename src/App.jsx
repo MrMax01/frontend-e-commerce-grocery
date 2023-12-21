@@ -7,6 +7,8 @@ import DashBoard from "./componets/DashBoard";
 import DashboardProducts from "./componets/DashboardProducts";
 import DashboardOrders from "./componets/DashboardOrders";
 
+import RegisterPage from "./componets/RegisterPage";
+
 function App() {
   return (
     <div className="App">
@@ -17,6 +19,7 @@ function App() {
           <Route path="/dashboard/" element={<DashBoard />} />
           <Route path="/dashboard/products" element={<DashboardProducts />} />
           <Route path="/dashboard/orders" element={<DashboardOrders />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </BrowserRouter>
     </div>
