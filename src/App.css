@@ -1,5 +1,6 @@
 .bg-primary-color {
   background-color: #377771;
+  border-color: #265752 !important;
 }
 
 .primary-button {
@@ -27,6 +28,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+}
+.size-sidebar {
+  width: 200px;
+  transition: width 0.3s ease;
+}
+.size-sidebar-collapsed {
+  width: 70px; /* Larghezza desiderata quando la Sidebar è chiusa */
+  transition: width 0.3s ease;
 }
 .icon {
   width: 40px;
