@@ -137,7 +137,14 @@ const NavBar = () => {
                     <Button className="me-2 primary-button" onClick={handleShow}>
                       Login
                     </Button>
-                    <Button className="secondary-button">Register</Button>
+                    <Button
+                      className="secondary-button"
+                      onClick={() => {
+                        navigation("/register");
+                      }}
+                    >
+                      Register
+                    </Button>
                   </>
                 )}
               </div>
