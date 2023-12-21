@@ -115,10 +115,19 @@ const NavBar = () => {
                         <NavDropdown.Item>Guida</NavDropdown.Item>
                         <NavDropdown.Item>Lingua</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Header>Gestisci</NavDropdown.Header>
-                        <NavDropdown.Item>Posts & attività</NavDropdown.Item>
-                        <NavDropdown.Item>Account per la pubblicazione di Off...</NavDropdown.Item>
-                        <NavDropdown.Divider />
+                        {myProfile.role === "SUPPLIER" && (
+                          <>
+                            <NavDropdown.Header>Gestisci</NavDropdown.Header>
+                            <NavDropdown.Item
+                              onClick={() => {
+                                navigation("/dashboard");
+                              }}
+                            >
+                              Dashboard e attività
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                          </>
+                        )}
                         <NavDropdown.Item onClick={handleSignOut}>Sign Out</NavDropdown.Item>
                       </div>
                     </NavDropdown>

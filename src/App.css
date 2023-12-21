@@ -2,6 +2,9 @@
   background-color: #377771;
   border-color: #265752 !important;
 }
+.bg-dashborad-color {
+  background-color: #16302d;
+}
 
 .primary-button {
   background-color: #377771;
@@ -18,9 +21,22 @@
 }
 .secondary-button:hover {
   background-color: #ff8e72 !important;
-  border: none;
 }
 
+.sidebar-primary-button {
+  background-color: #377771;
+  border: none;
+}
+.sidebar-primary-button:hover {
+  background-color: #16302d !important;
+  border: 2 px solid #265752;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.card-style {
+  border: 2 px solid #265752;
+  border-radius: 15px;
+}
 .dropdownSizesControl {
   width: 400px;
 }
@@ -32,9 +48,11 @@
 .size-sidebar {
   width: 200px;
   transition: width 0.3s ease;
+  height: 500px;
 }
 .size-sidebar-collapsed {
   width: 70px; /* Larghezza desiderata quando la Sidebar è chiusa */
+  height: 500px;
   transition: width 0.3s ease;
 }
 .icon {
