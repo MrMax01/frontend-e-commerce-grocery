@@ -64,7 +64,7 @@ const Sidebar = () => {
               navigate("/dashboard/orders");
             }}
           >
-            <i className="bi bi-people fs-5 me-3"></i> <span>{isSidebarOpen ? "Customers" : ""}</span>
+            <i className="bi bi-people fs-5 me-3"></i> <span>{isSidebarOpen ? "Orders" : ""}</span>
           </a>
           <a className="list-group-item my-2 bg-primary-color text-white sidebar-primary-button">
             <i className="bi bi-power fs-5 me-3"></i> <span>{isSidebarOpen ? "Logout" : ""}</span>
