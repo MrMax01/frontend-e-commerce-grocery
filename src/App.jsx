@@ -1,16 +1,17 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import NavBar from "./componets/NavBar";
+
 import HomePage from "./componets/HomePage";
+import DashBoard from "./componets/DashBoard";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<DashBoard />} />
         </Routes>
       </BrowserRouter>
     </div>

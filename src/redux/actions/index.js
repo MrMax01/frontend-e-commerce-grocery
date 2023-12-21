@@ -1,5 +1,7 @@
 export const GET_ME = "GET_ME";
+export const DELETE_ME = "DELETE_ME";
 export const GET_AUTHORIZATION = "GET_AUTHORIZATION";
+export const DELETE_AUTHORIZATION = "DELETE_AUTHORIZATION";
 
 export const login = (emailPAss) => {
   return async (dispatch, getState) => {
@@ -16,25 +18,6 @@ export const login = (emailPAss) => {
         console.log(myToken.accessToken);
 
         dispatch({ type: GET_AUTHORIZATION, payload: myToken.accessToken });
-        try {
-          let resp = await fetch("http://localhost:8080/me", {
-            headers: {
-              Authorization: "Bearer " + myToken.accessToken,
-            },
-          });
-          if (resp.ok) {
-            let me = await resp.json();
-            console.log(me);
-            dispatch({ type: GET_ME, payload: me });
-          } else {
-            console.log("error");
-
-            alert("resp.ok", resp.ok);
-          }
-        } catch (error) {
-          console.log(error);
-          alert("errore reperimento utente");
-        }
       } else {
         console.log("error");
         alert("email o password sbagliati!");
@@ -45,3 +28,31 @@ export const login = (emailPAss) => {
     }
   };
 };
+
+export const fetchMyProfile = (myToken) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/me", {
+        headers: {
+          Authorization: "Bearer " + myToken,
+        },
+      });
+      if (resp.ok) {
+        let me = await resp.json();
+        console.log(me);
+        dispatch({ type: GET_ME, payload: me });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
+export const clearToken = () => ({
+  type: DELETE_AUTHORIZATION,
+  payload: null,
+});
+export const clearMyProfile = () => ({
+  type: DELETE_ME,
+  payload: null,
+});

@@ -1,4 +1,4 @@
-import { GET_AUTHORIZATION } from "../actions";
+import { DELETE_AUTHORIZATION, GET_AUTHORIZATION } from "../actions";
 
 const initialState = {
   content: null,
@@ -6,6 +6,10 @@ const initialState = {
 const tokenAuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_AUTHORIZATION:
+      return {
+        content: action.payload,
+      };
+    case DELETE_AUTHORIZATION:
       return {
         content: action.payload,
       };

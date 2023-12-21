@@ -1,4 +1,4 @@
-import { GET_ME } from "../actions";
+import { DELETE_ME, GET_ME } from "../actions";
 
 const initialState = {
   content: null,
@@ -6,6 +6,10 @@ const initialState = {
 const meReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ME:
+      return {
+        content: action.payload,
+      };
+    case DELETE_ME:
       return {
         content: action.payload,
       };
