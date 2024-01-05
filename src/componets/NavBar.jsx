@@ -54,7 +54,7 @@ const NavBar = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className=" d-flex justify-content-between w-100">
               <Form className="d-flex w-75">
-                <Form.Control type="text" placeholder="name@example.com" />
+                <Form.Control type="text" placeholder="search..." />
                 <Button variant="outline-success">Search</Button>
               </Form>
               <div className="d-flex justify-content-center align-items-center ">
@@ -149,9 +149,54 @@ const NavBar = () => {
                 )}
               </div>
             </Nav>
+
+            <Nav className="d-lg-none">
+              <Row>
+                <Col>
+                  <Nav.Link href="#home">Frutta</Nav.Link>
+                  <Nav.Link href="#link">Verdura</Nav.Link>
+                  <Nav.Link href="#link">Carne</Nav.Link>
+                  <Nav.Link href="#link">Pesce</Nav.Link>
+                  <Nav.Link href="#link">Latte</Nav.Link>
+                  <Nav.Link href="#link">Formaggio</Nav.Link>
+                  <Nav.Link href="#link">Uova</Nav.Link>
+                </Col>
+                <Col>
+                  <Nav.Link href="#link">Pasta</Nav.Link>
+                  <Nav.Link href="#link">Riso</Nav.Link>
+                  <Nav.Link href="#link">Cereali</Nav.Link>
+                  <Nav.Link href="#link">Legumi</Nav.Link>
+                  <Nav.Link href="#link">Bevande</Nav.Link>
+                  <Nav.Link href="#link">Olio</Nav.Link>
+                  <Nav.Link href="#link">Aceto</Nav.Link>
+                </Col>
+              </Row>
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+      <Navbar expand="lg" className="bg-body-tertiary d-none d-lg-block">
+        <Container>
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Frutta</Nav.Link>
+            <Nav.Link href="#link">Verdura</Nav.Link>
+            <Nav.Link href="#link">Carne</Nav.Link>
+            <Nav.Link href="#link">Pesce</Nav.Link>
+            <Nav.Link href="#link">Latte</Nav.Link>
+            <Nav.Link href="#link">Formaggio</Nav.Link>
+            <Nav.Link href="#link">Uova</Nav.Link>
+            <Nav.Link href="#link">Pasta</Nav.Link>
+            <Nav.Link href="#link">Riso</Nav.Link>
+            <Nav.Link href="#link">Cereali</Nav.Link>
+            <Nav.Link href="#link">Legumi</Nav.Link>
+            <Nav.Link href="#link">Bevande</Nav.Link>
+            <Nav.Link href="#link">Olio</Nav.Link>
+            <Nav.Link href="#link">Aceto</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Grocery Shop</Modal.Title>

@@ -6,6 +6,7 @@ import NavBar from "./NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getLastProducts } from "../redux/actions";
+import CategoryBar from "./CategoryBar";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const HomePage = () => {
   return (
     <>
       <NavBar />
+
       <Container className="pb-5">
         <Card className="bg-dark text-white mb-5">
           <Card.Img src={headerImg} alt="Card image" height="500" className="object-fit-cover" />
