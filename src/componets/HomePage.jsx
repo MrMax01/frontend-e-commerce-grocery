@@ -6,7 +6,6 @@ import NavBar from "./NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getLastProducts } from "../redux/actions";
-import CategoryBar from "./CategoryBar";
 
 const HomePage = () => {
   const dispatch = useDispatch();
