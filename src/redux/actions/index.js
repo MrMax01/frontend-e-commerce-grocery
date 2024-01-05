@@ -115,3 +115,46 @@ export const getLastProducts = () => {
     }
   };
 };
+
+export const registrationSupplier = (body) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/register/supplier", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      if (resp.ok) {
+        let me = await resp.json();
+        console.log(me);
+        return true;
+      }
+    } catch (error) {
+      return false;
+    }
+  };
+};
+export const registrationCustomer = async (body) => {
+  try {
+    let resp = await fetch("http://localhost:8080/register/customer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (resp.ok) {
+      let me = await resp.json();
+      console.log(me);
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error("Errore durante la richiesta:", error);
+    return false;
+  }
+};
