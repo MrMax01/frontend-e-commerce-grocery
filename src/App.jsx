@@ -8,6 +8,8 @@ import DashboardProducts from "./componets/DashboardProducts";
 import DashboardOrders from "./componets/DashboardOrders";
 
 import RegisterPage from "./componets/RegisterPage";
+import ProductPage from "./componets/ProductPage";
+import ProductDetails from "./componets/ProductDetails";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/dashboard/products" element={<DashboardProducts />} />
           <Route path="/dashboard/orders" element={<DashboardOrders />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/product/:category" element={<ProductPage />} />
+          <Route path="/productDetail/:productId" element={<ProductDetails />} />
         </Routes>
       </BrowserRouter>
     </div>

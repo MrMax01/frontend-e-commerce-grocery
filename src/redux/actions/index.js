@@ -6,6 +6,7 @@ export const GET_MY_PRODUCT = "GET_MY_PRODUCT";
 export const REMOVE_MY_PRODUCT = "REMOVE_MY_PRODUCT";
 export const ADD_MY_PRODUCT = "ADD_MY_PRODUCT";
 export const GET_PRODUCTS = "GET_PRODUCTS";
+export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 
 export const login = (emailPAss) => {
   return async (dispatch, getState) => {
@@ -97,11 +98,41 @@ export const getProducts = () => {
     }
   };
 };
+export const getProductsOfCategory = (category) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/products?category=" + category);
+      if (resp.ok) {
+        let products = await resp.json();
+        console.log(products);
+        dispatch({ type: GET_PRODUCTS, payload: products.content });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
+export const getProductDetail = (id) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/products/" + id);
+      if (resp.ok) {
+        let products = await resp.json();
+        console.log(products);
+        dispatch({ type: GET_PRODUCT_DETAIL, payload: products });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
 
 export const getLastProducts = () => {
   return async (dispatch, getState) => {
     try {
-      let resp = await fetch("http://localhost:8080/products?orderByDate=true");
+      let resp = await fetch("http://localhost:8080/products?orderByDate=true&&page=0&size=4");
       if (resp.ok) {
         let products = await resp.json();
         console.log(products);

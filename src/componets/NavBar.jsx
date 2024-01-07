@@ -46,10 +46,11 @@ const NavBar = () => {
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container className="">
-          <Navbar.Brand href="#home">
+          <Link to="/" className="myTitle me-2">
             <img src={logo} alt="Bootstrap" width="40" height="40" className="me-2" />
-            Grocery Shop
-          </Navbar.Brand>
+            Grocery-Shop
+          </Link>
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className=" d-flex justify-content-between w-100">
@@ -153,22 +154,53 @@ const NavBar = () => {
             <Nav className="d-lg-none">
               <Row>
                 <Col>
-                  <Nav.Link href="#home">Frutta</Nav.Link>
-                  <Nav.Link href="#link">Verdura</Nav.Link>
-                  <Nav.Link href="#link">Carne</Nav.Link>
-                  <Nav.Link href="#link">Pesce</Nav.Link>
-                  <Nav.Link href="#link">Latte</Nav.Link>
-                  <Nav.Link href="#link">Formaggio</Nav.Link>
-                  <Nav.Link href="#link">Uova</Nav.Link>
+                  <Link className="d-block myLinks" to="/product/frutta">
+                    Frutta
+                  </Link>
+                  <Link className="d-block myLinks" to="/product/verdura">
+                    Verdura
+                  </Link>
+                  <Link className="d-block myLinks" to="/product/carne">
+                    Carne
+                  </Link>
+                  <Link className="d-block myLinks" to="/product/pesce">
+                    Pesce
+                  </Link>
+                  <Link className="d-block myLinks" to="/product/latte">
+                    Latte
+                  </Link>
+                  <Link className="d-block myLinks" to="/product/formaggio">
+                    Formaggio
+                  </Link>
+                  <Link className="d-block myLinks" to="/product/uova">
+                    Uova
+                  </Link>
                 </Col>
                 <Col>
-                  <Nav.Link href="#link">Pasta</Nav.Link>
-                  <Nav.Link href="#link">Riso</Nav.Link>
-                  <Nav.Link href="#link">Cereali</Nav.Link>
-                  <Nav.Link href="#link">Legumi</Nav.Link>
-                  <Nav.Link href="#link">Bevande</Nav.Link>
-                  <Nav.Link href="#link">Olio</Nav.Link>
-                  <Nav.Link href="#link">Aceto</Nav.Link>
+                  <Link className="d-block myLinks" to="/product/pasta">
+                    Pasta
+                  </Link>
+                  <Link className="d-block myLinks" to="/product/riso">
+                    Riso
+                  </Link>
+                  <Link className="d-block myLinks" to="/product/cerareali">
+                    Cereali
+                  </Link>
+                  <Link className="d-block myLinks" to="/product/legumi">
+                    Legumi
+                  </Link>
+                  <Link className="d-block myLinks" to="/product/bevande">
+                    Bevande
+                  </Link>
+                  <Link className="d-block myLinks" to="/product/olio">
+                    Olio
+                  </Link>
+                  <Link className="d-block myLinks" to="/product/aceto">
+                    Aceto
+                  </Link>
+                  <Link className="d-block myLinks" to="/product/all">
+                    Tutti i prodotti
+                  </Link>
                 </Col>
               </Row>
             </Nav>
@@ -179,20 +211,51 @@ const NavBar = () => {
       <Navbar expand="lg" className="bg-body-tertiary d-none d-lg-block">
         <Container>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Frutta</Nav.Link>
-            <Nav.Link href="#link">Verdura</Nav.Link>
-            <Nav.Link href="#link">Carne</Nav.Link>
-            <Nav.Link href="#link">Pesce</Nav.Link>
-            <Nav.Link href="#link">Latte</Nav.Link>
-            <Nav.Link href="#link">Formaggio</Nav.Link>
-            <Nav.Link href="#link">Uova</Nav.Link>
-            <Nav.Link href="#link">Pasta</Nav.Link>
-            <Nav.Link href="#link">Riso</Nav.Link>
-            <Nav.Link href="#link">Cereali</Nav.Link>
-            <Nav.Link href="#link">Legumi</Nav.Link>
-            <Nav.Link href="#link">Bevande</Nav.Link>
-            <Nav.Link href="#link">Olio</Nav.Link>
-            <Nav.Link href="#link">Aceto</Nav.Link>
+            <Link className="myLinks me-3" to="/product/frutta">
+              Frutta
+            </Link>
+            <Link className="myLinks me-3" to="/product/verdura">
+              Verdura
+            </Link>
+            <Link className="myLinks me-3" to="/product/carne">
+              Carne
+            </Link>
+            <Link className="myLinks me-3" to="/product/pesce">
+              Pesce
+            </Link>
+            <Link className="myLinks me-3" to="/product/latte">
+              Latte
+            </Link>
+            <Link className="myLinks me-3" to="/product/formaggio">
+              Formaggio
+            </Link>
+            <Link className="myLinks me-3" to="/product/uova">
+              Uova
+            </Link>
+            <Link className="myLinks me-3" to="/product/pasta">
+              Pasta
+            </Link>
+            <Link className="myLinks me-3" to="/product/riso">
+              Riso
+            </Link>
+            <Link className="myLinks me-3" to="/product/cerareali">
+              Cereali
+            </Link>
+            <Link className="myLinks me-3" to="/product/legumi">
+              Legumi
+            </Link>
+            <Link className="myLinks me-3" to="/product/bevande">
+              Bevande
+            </Link>
+            <Link className="myLinks me-3" to="/product/olio">
+              Olio
+            </Link>
+            <Link className="myLinks me-3" to="/product/aceto">
+              Aceto
+            </Link>
+            <Link className="myLinks me-3" to="/product/all">
+              Tutti i prodotti
+            </Link>
           </Nav>
         </Container>
       </Navbar>
