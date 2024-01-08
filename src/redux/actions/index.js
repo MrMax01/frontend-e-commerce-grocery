@@ -168,8 +168,8 @@ export const getProductDetail = (id) => {
       let resp = await fetch("http://localhost:8080/products/" + id);
       if (resp.ok) {
         let products = await resp.json();
-        console.log(products);
         dispatch({ type: GET_PRODUCT_DETAIL, payload: products });
+        console.log(products);
       }
     } catch (error) {
       console.log(error);

@@ -76,7 +76,7 @@ const DashBoardAddProduct = () => {
                 </Form.Group>
                 <Form.Label>Descrizione prodotto</Form.Label>
                 <Form.Control
-                  type="text"
+                  as="textarea"
                   placeholder="raccontaci la storia del prodotto...."
                   onChange={(e) => {
                     setSavedProduct({ ...savedProduct, description: e.target.value });

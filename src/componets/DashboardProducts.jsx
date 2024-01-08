@@ -53,9 +53,14 @@ const DashboardProducts = () => {
                       <td>{product.product_status}</td>
                       <td>${product.unit_price}/kg</td>
                       <td>
-                        <i class="bi bi-pencil me-3"></i>
                         <i
-                          class="bi bi-trash3-fill"
+                          className="bi bi-pencil me-3"
+                          onClick={() => {
+                            navigate(`/dashboard/products/${product.id}`);
+                          }}
+                        ></i>
+                        <i
+                          className="bi bi-trash3-fill"
                           onClick={() => {
                             dispatch(deleteMyProduct(myToken, product.id));
                           }}
