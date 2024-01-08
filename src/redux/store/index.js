@@ -7,6 +7,7 @@ import tokenAuthReducer from "../reducer/tokenAuthReducer";
 import meReducer from "../reducer/me";
 import productsReducer from "../reducer/productsReducer";
 import productDetailReducer from "../reducer/productDetailReducer";
+import myCartReducer from "../reducer/myCartReducer";
 
 const persistConfig = {
   key: "root",
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   me: meReducer,
   products: productsReducer,
   productDetail: productDetailReducer,
+  cart: myCartReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

@@ -10,6 +10,7 @@ import DashboardOrders from "./componets/DashboardOrders";
 import RegisterPage from "./componets/RegisterPage";
 import ProductPage from "./componets/ProductPage";
 import ProductDetails from "./componets/ProductDetails";
+import MyCart from "./componets/MyCart";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/product/:category" element={<ProductPage />} />
           <Route path="/productDetail/:productId" element={<ProductDetails />} />
+          <Route path="/mycart" element={<MyCart />} />
         </Routes>
       </BrowserRouter>
     </div>

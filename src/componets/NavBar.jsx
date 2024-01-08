@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearMyProfile, clearToken, fetchMyProfile, login } from "../redux/actions";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const [show, setShow] = useState(false);
@@ -61,7 +61,13 @@ const NavBar = () => {
               <div className="d-flex justify-content-center align-items-center ">
                 {myProfile ? (
                   <>
-                    <Button variant="danger" className="rounded-circle d-block icon me-3">
+                    <Button
+                      variant="danger"
+                      onClick={() => {
+                        navigation("/mycart");
+                      }}
+                      className="rounded-circle d-block icon me-3"
+                    >
                       <i className="bi bi-cart "></i>
                     </Button>
                     <NavDropdown

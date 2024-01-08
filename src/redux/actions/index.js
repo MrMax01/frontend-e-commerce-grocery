@@ -7,6 +7,9 @@ export const REMOVE_MY_PRODUCT = "REMOVE_MY_PRODUCT";
 export const ADD_MY_PRODUCT = "ADD_MY_PRODUCT";
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
+export const GET_MY_CART = "GET_MY_CART";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 
 export const login = (emailPAss) => {
   return async (dispatch, getState) => {
@@ -62,7 +65,7 @@ export const clearMyProfile = () => ({
   payload: null,
 });
 
-//lista dei prodotti del supplier
+// CRUD PRODUCT
 export const getMyProducts = (myToken) => {
   return async (dispatch, getState) => {
     try {
@@ -188,4 +191,25 @@ export const registrationCustomer = async (body) => {
     console.error("Errore durante la richiesta:", error);
     return false;
   }
+};
+
+//CRUD CART
+export const getMyCart = (myToken) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/cart", {
+        headers: {
+          Authorization: "Bearer " + myToken,
+        },
+      });
+      if (resp.ok) {
+        let me = await resp.json();
+        console.log(me);
+        dispatch({ type: GET_MY_CART, payload: me });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
 };
