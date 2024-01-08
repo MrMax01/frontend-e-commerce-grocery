@@ -16,6 +16,7 @@ const DashboardUpdateProduct = () => {
   const isProductInCart = myCart.some((cartItem) => cartItem.product.id === productId);
 
   const [savedProduct, setSavedProduct] = useState(null);
+  const [urlImg, setUrlImg] = useState(null);
   const handleSumbit = (e) => {
     e.preventDefault();
     console.log(savedProduct);
@@ -40,6 +41,7 @@ const DashboardUpdateProduct = () => {
           unit_price: product.unit_price,
           quantity: product.quantity,
         };
+        setUrlImg(product.photo);
         setSavedProduct(newproduct);
       })
       .catch((err) => console.log(err));
@@ -53,7 +55,9 @@ const DashboardUpdateProduct = () => {
         {savedProduct && (
           <Row xs={1} lg={2} className="mt-2 w-100">
             <Col>
-              <Card className="shadow mt-2">{/* <Card.Img variant="top" src={item.photo} /> */}</Card>
+              <Card className="shadow mt-2">
+                <Card.Img variant="top" src={urlImg} />
+              </Card>
             </Col>
             <Col>
               <Card className="card-style w-100 my-2 shadow border-0">
@@ -111,8 +115,9 @@ const DashboardUpdateProduct = () => {
                       </Form.Group>
                       <Form.Label>Descrizione prodotto</Form.Label>
                       <Form.Control
-                        type="text"
-                        placeholder="raccontaci la storia del prodotto...."
+                        as="textarea"
+                        placeholder={savedProduct.description}
+                        defaultValue={savedProduct.description}
                         onChange={(e) => {
                           setSavedProduct({ ...savedProduct, description: e.target.value });
                         }}
