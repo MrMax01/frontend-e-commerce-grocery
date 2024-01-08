@@ -1,8 +1,8 @@
-import { Button, Col, Container, Form, Modal, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
+import { Badge, Button, Col, Container, Form, Modal, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearMyProfile, clearToken, fetchMyProfile, login } from "../redux/actions";
+import { clearMyProfile, clearToken, fetchMyProfile, getMyCart, login } from "../redux/actions";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
@@ -25,6 +25,7 @@ const NavBar = () => {
     // Rimuovi il token dallo stato Redux
     dispatch(clearMyProfile());
     dispatch(clearToken());
+    navigation("/");
 
     // Rimuovi il token dal localStorage
     localStorage.removeItem("token");
@@ -41,6 +42,7 @@ const NavBar = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [myToken]);
+  const myCart = useSelector((state) => state.cart.content);
 
   return (
     <>
@@ -61,15 +63,20 @@ const NavBar = () => {
               <div className="d-flex justify-content-center align-items-center ">
                 {myProfile ? (
                   <>
-                    <Button
-                      variant="danger"
-                      onClick={() => {
-                        navigation("/mycart");
-                      }}
-                      className="rounded-circle d-block icon me-3"
-                    >
-                      <i className="bi bi-cart "></i>
-                    </Button>
+                    {myProfile.role === "CUSTOMER" && (
+                      <Button
+                        onClick={() => {
+                          navigation("/mycart");
+                        }}
+                        className="rounded-circle d-block icon me-3 position-relative primary-button "
+                      >
+                        <i className="bi bi-cart "></i>
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                          {myCart.length}
+                          <span className="visually-hidden">unread messages</span>
+                        </span>
+                      </Button>
+                    )}
                     <NavDropdown
                       title={
                         myProfile ? (

@@ -51,6 +51,9 @@ export const fetchMyProfile = (myToken) => {
         let me = await resp.json();
         console.log(me);
         dispatch({ type: GET_ME, payload: me });
+        if (me.role === "CUSTOMER") {
+          getMyCart(myToken);
+        }
       }
     } catch (error) {
       console.log(error);

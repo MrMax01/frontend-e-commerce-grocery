@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addToCart, getProductDetail } from "../redux/actions";
+import { addToCart, getMyCart, getProductDetail } from "../redux/actions";
 import { Alert, Button, Card, Col, Container, Form, ListGroup, Row } from "react-bootstrap";
 import NavBar from "./NavBar";
 
@@ -11,7 +11,9 @@ const ProductDetails = () => {
   const [changeQuantity, setChangeQuantity] = useState(0);
 
   const item = useSelector((state) => state.productDetail.content);
+  const myCart = useSelector((state) => state.cart.content);
   const myToken = useSelector((state) => state.userToken.content);
+  const isProductInCart = myCart.some((cartItem) => cartItem.product.id === productId);
 
   useEffect(() => {
     dispatch(getProductDetail(productId));
@@ -57,15 +59,22 @@ const ProductDetails = () => {
                     <span>kg</span>
                   </div>
                 </div>
-                <Button
-                  variant="primary"
-                  disabled={myToken === null || changeQuantity === 0 || changeQuantity > item.quantity}
-                  onClick={() => {
-                    dispatch(addToCart(myToken, { productId: productId, quantity: changeQuantity }));
-                  }}
-                >
-                  Aggiungi al carrello
-                </Button>
+                {isProductInCart ? (
+                  <>
+                    <span className="text-success bolder">Aggiunto</span>
+                    <i className="bi bi-check-circle-fill text-success"></i>
+                  </>
+                ) : (
+                  <Button
+                    variant="primary"
+                    disabled={myToken === null || changeQuantity === 0 || changeQuantity > item.quantity}
+                    onClick={() => {
+                      dispatch(addToCart(myToken, { productId: productId, quantity: changeQuantity }));
+                    }}
+                  >
+                    Aggiungi al carrello
+                  </Button>
+                )}
               </Form>
             </Card.Body>
 

@@ -2,10 +2,11 @@ import { Card, Col, Container, Navbar, Row } from "react-bootstrap";
 import Sidebar from "./Sidebar";
 import LineChartSales from "./charts/LineChartSales";
 import PieChartCategories from "./charts/PieChartCategories";
+import NavBar from "./NavBar";
 
 const DashBoard = () => {
   return (
-    <Container fluid className="bg-dashborad-color d-flex pb-5">
+    <Container fluid className="bg-dashborad-color d-flex pb-5 ">
       <Sidebar />
       <div className="w-100 ">
         <Row className="my-2">
