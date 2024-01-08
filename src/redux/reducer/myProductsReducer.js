@@ -13,7 +13,7 @@ const myProductsReducer = (state = initialState, action) => {
     case REMOVE_MY_PRODUCT:
       return {
         ...state,
-        content: state.content.filter((product) => product.id !== action.payload.id),
+        content: state.content.filter((product) => product.id !== action.payload),
       };
     case ADD_MY_PRODUCT:
       return {

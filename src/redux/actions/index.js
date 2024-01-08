@@ -74,7 +74,7 @@ export const clearMyProfile = () => ({
 export const getMyProducts = (myToken) => {
   return async (dispatch, getState) => {
     try {
-      let resp = await fetch("http://localhost:8080/me", {
+      let resp = await fetch("http://localhost:8080/suppliers/products", {
         headers: {
           Authorization: "Bearer " + myToken,
         },
@@ -82,7 +82,48 @@ export const getMyProducts = (myToken) => {
       if (resp.ok) {
         let me = await resp.json();
         console.log(me);
-        dispatch({ type: GET_ME, payload: me });
+        dispatch({ type: GET_MY_PRODUCT, payload: me });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
+export const addMyProduct = (myToken, body) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/me/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + myToken,
+        },
+        body: JSON.stringify(body),
+      });
+      if (resp.ok) {
+        const addedProductItem = await resp.json();
+
+        // Invia un'azione per aggiornare lo stato del carrello
+        dispatch({ type: ADD_TO_CART, payload: addedProductItem });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
+export const deleteMyProduct = (myToken, productId) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/products/" + productId, {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + myToken,
+        },
+      });
+      if (resp.ok) {
+        dispatch({ type: REMOVE_MY_PRODUCT, payload: productId });
       }
     } catch (error) {
       console.log(error);

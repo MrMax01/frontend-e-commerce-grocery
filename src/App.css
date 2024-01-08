@@ -3,7 +3,7 @@
   border-color: #265752 !important;
 }
 .bg-dashborad-color {
-  background-color: #16302d;
+  /* background-color: #16302d; */
 }
 
 .primary-button {
@@ -24,17 +24,17 @@
 }
 
 .sidebar-primary-button {
-  background-color: #377771;
+  /* background-color: #377771; */
   border: none;
 }
 .sidebar-primary-button:hover {
-  background-color: #16302d !important;
-  border: 2 px solid #265752;
+  /* background-color: #16302d !important;
+  border: 2 px solid #265752; */
   border-radius: 15px;
   cursor: pointer;
 }
 .card-style {
-  border: 2 px solid #265752;
+  /* border: 2 px solid #265752; */
   border-radius: 15px;
 }
 .dropdownSizesControl {

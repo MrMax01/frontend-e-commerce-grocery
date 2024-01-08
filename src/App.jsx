@@ -11,6 +11,7 @@ import RegisterPage from "./componets/RegisterPage";
 import ProductPage from "./componets/ProductPage";
 import ProductDetails from "./componets/ProductDetails";
 import MyCart from "./componets/MyCart";
+import DashBoardAddProduct from "./componets/DashBoardAddProduct";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/dashboard/home" element={<DashBoard />} />
           <Route path="/dashboard/" element={<DashBoard />} />
           <Route path="/dashboard/products" element={<DashboardProducts />} />
+          <Route path="/dashboard/products/add" element={<DashBoardAddProduct />} />
           <Route path="/dashboard/orders" element={<DashboardOrders />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/product/:category" element={<ProductPage />} />
