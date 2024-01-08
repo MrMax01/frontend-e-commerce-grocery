@@ -2,15 +2,48 @@ import { Button, Card, Col, Container, Form, Modal, Row } from "react-bootstrap"
 import NavBar from "./NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getMyCart } from "../redux/actions";
+import { deleteMyCart, getMyCart } from "../redux/actions";
 
 const MyCart = () => {
   const myToken = useSelector((state) => state.userToken.content);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.content);
+  const [changeQuantity, setChangeQuantity] = useState({ productId: "", quantity: "" });
+
+  //   const handelChange = (propertyName, propertyValue) => {
+  //     setChangeQuantity({ ...changeQuantity, [propertyName]: propertyValue });
+  //   };
+
   const [showModal, setShowModal] = useState(null);
   const handleSumbit = () => {
-    handleClose();
+    let dataToUpdate = { quantity: changeQuantity.quantity };
+    fetch("http://localhost:8080/cart/" + changeQuantity.id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + myToken,
+      },
+      body: JSON.stringify(dataToUpdate),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json(); // Qui potresti fare il controllo sulla validità del JSON
+      })
+      .then((data) => {
+        if (data) {
+          console.log("PUT request successful:", data);
+          dispatch(getMyCart(myToken));
+          handleClose();
+        } else {
+          // Se la risposta non è JSON valido o è vuota
+          console.error("Empty or invalid JSON response");
+        }
+      })
+      .catch((error) => {
+        console.error("Error making PUT request:", error);
+      });
   };
 
   const handleClose = () => {
@@ -55,7 +88,13 @@ const MyCart = () => {
                           <Form.Label>quantità che hai bisogno(max: {cart.product.quantity}kg) </Form.Label>
                           <div className="d-flex align-items-center mb-3">
                             <div className="me-2">
-                              <Form.Control type="number" placeholder="example 100.5" onChange={(e) => {}} />
+                              <Form.Control
+                                type="number"
+                                placeholder={cart.quantity}
+                                onChange={(e) => {
+                                  setChangeQuantity({ id: cart.id, quantity: e.target.value });
+                                }}
+                              />
                             </div>
                             <div>
                               <span>kg</span>
@@ -71,7 +110,7 @@ const MyCart = () => {
                       <Button
                         variant="primary"
                         onClick={() => {
-                          handleSumbit(cart.id);
+                          handleSumbit();
                         }}
                       >
                         Save Changes
@@ -83,7 +122,12 @@ const MyCart = () => {
 
               <span>${cart.product.unit_price * cart.quantity}</span>
 
-              <i className="bi bi-x-lg"></i>
+              <i
+                className="bi bi-x-lg"
+                onClick={() => {
+                  dispatch(deleteMyCart(myToken, cart.id));
+                }}
+              ></i>
             </div>
           ))}
         </Col>

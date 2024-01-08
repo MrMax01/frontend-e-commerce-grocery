@@ -1,13 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProductDetail } from "../redux/actions";
-import { Button, Card, Col, Container, Form, ListGroup, Row } from "react-bootstrap";
+import { addToCart, getProductDetail } from "../redux/actions";
+import { Alert, Button, Card, Col, Container, Form, ListGroup, Row } from "react-bootstrap";
 import NavBar from "./NavBar";
 
 const ProductDetails = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
+  const [changeQuantity, setChangeQuantity] = useState(0);
+
   const item = useSelector((state) => state.productDetail.content);
   const myToken = useSelector((state) => state.userToken.content);
 
@@ -45,7 +47,9 @@ const ProductDetails = () => {
                     <Form.Control
                       type="number"
                       placeholder="example 100.5"
-                      onChange={(e) => {}}
+                      onChange={(e) => {
+                        setChangeQuantity(e.target.value);
+                      }}
                       disabled={myToken === null}
                     />
                   </div>
@@ -53,11 +57,21 @@ const ProductDetails = () => {
                     <span>kg</span>
                   </div>
                 </div>
-                <Button variant="primary" disabled={myToken === null}>
+                <Button
+                  variant="primary"
+                  disabled={myToken === null || changeQuantity === 0 || changeQuantity > item.quantity}
+                  onClick={() => {
+                    dispatch(addToCart(myToken, { productId: productId, quantity: changeQuantity }));
+                  }}
+                >
                   Aggiungi al carrello
                 </Button>
               </Form>
             </Card.Body>
+
+            <Alert variant="warning" className={changeQuantity > item.quantity ? "mt-3" : "d-none"}>
+              Quantità superiore a quella disponibile
+            </Alert>
           </Card>
         </Col>
       </Row>

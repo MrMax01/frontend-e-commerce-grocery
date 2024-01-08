@@ -1,3 +1,5 @@
+import { type } from "@testing-library/user-event/dist/type";
+
 export const GET_ME = "GET_ME";
 export const DELETE_ME = "DELETE_ME";
 export const GET_AUTHORIZATION = "GET_AUTHORIZATION";
@@ -206,6 +208,47 @@ export const getMyCart = (myToken) => {
         let me = await resp.json();
         console.log(me);
         dispatch({ type: GET_MY_CART, payload: me });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
+export const deleteMyCart = (myToken, cartId) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/cart/" + cartId, {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + myToken,
+        },
+      });
+      if (resp.ok) {
+        dispatch({ type: REMOVE_FROM_CART, payload: cartId });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
+export const addToCart = (myToken, body) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/cart/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + myToken,
+        },
+        body: JSON.stringify(body),
+      });
+      if (resp.ok) {
+        const addedCartItem = await resp.json();
+
+        // Invia un'azione per aggiornare lo stato del carrello
+        dispatch({ type: ADD_TO_CART, payload: addedCartItem });
       }
     } catch (error) {
       console.log(error);
