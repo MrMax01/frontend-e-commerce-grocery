@@ -23,6 +23,13 @@
 }
 .secondary-button:hover {
   background-color: #ff8e72 !important;
+  border: none;
+}
+.secondary-button:disabled {
+  background-color: #ed6a5e;
+  border-color: #c4574d;
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .sidebar-primary-button {
@@ -148,4 +155,88 @@
   font-size: 22px;
   text-decoration: none;
   color: black;
+}
+
+/* button detail */
+.detail-button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+.detail-button.learn-more {
+  width: 12rem;
+  height: auto;
+}
+.detail-button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #ed6a5e;
+  border-radius: 1.625rem;
+}
+.detail-button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+.detail-button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+.detail-button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.25rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+.detail-button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #ed6a5e;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+.detail-button:hover .circle {
+  width: 100%;
+}
+.detail-button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+.detail-button:hover .button-text {
+  color: #fff;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

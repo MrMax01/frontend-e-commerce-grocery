@@ -106,17 +106,33 @@ const ProductPage = () => {
                   <Card.Img
                     variant="top"
                     src={product.photo}
+                    className="cursor-pointer"
                     onClick={() => {
                       navigate(`/productDetail/${product.id}`);
                     }}
                   />
                   <Card.Body>
-                    <Card.Title>{product.name}</Card.Title>
+                    <Card.Title
+                      className="cursor-pointer"
+                      onClick={() => {
+                        navigate(`/productDetail/${product.id}`);
+                      }}
+                    >
+                      {product.name}
+                    </Card.Title>
                     <Card.Title>${product.unit_price}/kg</Card.Title>
                     <Card.Text>{product.description}</Card.Text>
-                    <Button variant="primary" disabled={myToken === null}>
-                      Aggiungi al carrello
-                    </Button>
+                    <button
+                      className="detail-button learn-more"
+                      onClick={() => {
+                        navigate(`/productDetail/${product.id}`);
+                      }}
+                    >
+                      <span className="circle" aria-hidden="true">
+                        <span className="icon arrow"></span>
+                      </span>
+                      <span className="button-text">Detail</span>
+                    </button>
                   </Card.Body>
                 </Card>
               </Col>

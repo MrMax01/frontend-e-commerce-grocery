@@ -67,7 +67,7 @@ const ProductDetails = () => {
                   </>
                 ) : (
                   <Button
-                    variant="primary"
+                    className="secondary-button"
                     disabled={myToken === null || changeQuantity === 0 || changeQuantity > item.quantity}
                     onClick={() => {
                       dispatch(addToCart(myToken, { productId: productId, quantity: changeQuantity }));
