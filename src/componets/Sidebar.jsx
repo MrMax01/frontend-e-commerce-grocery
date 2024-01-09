@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { clearMyProfile, clearToken } from "../redux/actions";
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -63,7 +66,17 @@ const Sidebar = () => {
           >
             <i className="bi bi-people fs-5 me-3"></i> <span>{isSidebarOpen ? "Orders" : ""}</span>
           </a>
-          <a className="list-group-item my-2   sidebar-primary-button">
+          <a
+            className="list-group-item my-2   sidebar-primary-button"
+            onClick={() => {
+              dispatch(clearMyProfile());
+              dispatch(clearToken());
+              navigate("/");
+
+              // Rimuovi il token dal localStorage
+              localStorage.removeItem("token");
+            }}
+          >
             <i className="bi bi-power fs-5 me-3"></i> <span>{isSidebarOpen ? "Logout" : ""}</span>
           </a>
         </div>

@@ -132,6 +132,51 @@ export const deleteMyProduct = (myToken, productId) => {
   };
 };
 
+export const updateMyProduct = (myToken, body, productId) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/me/products/" + productId, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + myToken,
+        },
+        body: JSON.stringify(body),
+      });
+      if (resp.ok) {
+        const addedProductItem = await resp.json();
+
+        // Invia un'azione per aggiornare lo stato del carrello
+        dispatch({ type: GET_PRODUCT_DETAIL, payload: addedProductItem });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
+
+export const pictureForMyProduct = (myToken, body, productId) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/me/products/upload/" + productId, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + myToken,
+        },
+        body: body,
+      });
+      if (resp.ok) {
+        //const addedProductItem = await resp.json();
+        // Invia un'azione per aggiornare lo stato del carrello
+        //dispatch({ type: GET_PRODUCT_DETAIL, payload: addedProductItem });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
 export const getProducts = () => {
   return async (dispatch, getState) => {
     try {

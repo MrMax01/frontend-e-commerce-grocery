@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { addMyProduct, getProductDetail } from "../redux/actions";
+import { addMyProduct, getProductDetail, pictureForMyProduct, updateMyProduct } from "../redux/actions";
 import NavBar from "./NavBar";
-import { Button, Card, Col, Container, Form, ListGroup, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Image, ListGroup, Modal, Row } from "react-bootstrap";
 import Sidebar from "./Sidebar";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const DashboardUpdateProduct = () => {
   const { productId } = useParams();
@@ -17,8 +17,38 @@ const DashboardUpdateProduct = () => {
 
   const [savedProduct, setSavedProduct] = useState(null);
   const [urlImg, setUrlImg] = useState(null);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => {
+    setShow(true);
+  };
+  const previewImg = (event) => {
+    console.log(event);
+    const [file] = event.target.files;
+    if (file) {
+      setUrlImg(URL.createObjectURL(file));
+    }
+  };
+  const photoInput = useRef(null);
+
+  const handleClick = () => {
+    photoInput.current.click();
+  };
+
+  const handleSubmitPhoto = (event) => {
+    event.preventDefault();
+    const form = document.querySelector(`#photoForm`);
+    const formData = new FormData(form);
+    console.log(formData);
+
+    dispatch(pictureForMyProduct(myToken, formData, productId));
+
+    handleClose();
+  };
   const handleSumbit = (e) => {
     e.preventDefault();
+    dispatch(updateMyProduct(myToken, savedProduct, productId));
     console.log(savedProduct);
   };
   useEffect(() => {
@@ -57,6 +87,11 @@ const DashboardUpdateProduct = () => {
             <Col>
               <Card className="shadow mt-2">
                 <Card.Img variant="top" src={urlImg} />
+                <Card.Body>
+                  <Button className="primary-button" onClick={handleShow}>
+                    Upload
+                  </Button>
+                </Card.Body>
               </Card>
             </Col>
             <Col>
@@ -148,6 +183,25 @@ const DashboardUpdateProduct = () => {
                 </Form>
               </Card>
             </Col>
+            <Modal show={show} onHide={handleClose} className="mt-3" keyboard={true}>
+              <Form onSubmit={handleSubmitPhoto} id="photoForm">
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    <p>Carica una Immagine</p>
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Image src={urlImg} alt="Preview" className="w-100" />
+                </Modal.Body>
+                <Modal.Footer>
+                  <Form.Control type="file" className="d-none" name="avatar" onChange={previewImg} ref={photoInput} />
+                  <Button onClick={handleClick}>Add Photo</Button>
+                  <Button variant="primary" type="submit">
+                    Save Changes
+                  </Button>
+                </Modal.Footer>
+              </Form>
+            </Modal>
           </Row>
         )}
       </Container>
