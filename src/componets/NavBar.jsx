@@ -11,6 +11,7 @@ const NavBar = () => {
   const myToken = useSelector((state) => state.userToken.content);
   const navigation = useNavigate();
   const myProfile = useSelector((state) => state.me.content);
+  const myCart = useSelector((state) => state.cart.content);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -42,7 +43,6 @@ const NavBar = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [myToken]);
-  const myCart = useSelector((state) => state.cart.content);
 
   return (
     <>
@@ -72,7 +72,7 @@ const NavBar = () => {
                       >
                         <i className="bi bi-cart "></i>
                         <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                          {myCart.length}
+                          {myCart.length > 0 ? myCart.length : 0}
                           <span className="visually-hidden">unread messages</span>
                         </span>
                       </Button>

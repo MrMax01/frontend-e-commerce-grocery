@@ -38,7 +38,8 @@ const ProductDetails = () => {
               <ListGroup.Item>${item.unit_price}/kg</ListGroup.Item>
               <ListGroup.Item>quantità massima: {item.quantity} kg</ListGroup.Item>
               <ListGroup.Item>
-                pubblicato: {item.publicatedAt} da: {item.supplier.company_name}
+                pubblicato: {item.publicatedAt} da:
+                {/* {item.supplier.company_name} */}
               </ListGroup.Item>
             </ListGroup>
             <Card.Body>

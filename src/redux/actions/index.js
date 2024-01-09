@@ -1,5 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type";
-
 export const GET_ME = "GET_ME";
 export const DELETE_ME = "DELETE_ME";
 export const GET_AUTHORIZATION = "GET_AUTHORIZATION";
@@ -12,6 +10,8 @@ export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const GET_MY_CART = "GET_MY_CART";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const ADD_ORDER = "ADD_ORDER";
+export const GET_MY_ORDER = "GET_MY_ORDER";
 
 export const login = (emailPAss) => {
   return async (dispatch, getState) => {
@@ -52,7 +52,7 @@ export const fetchMyProfile = (myToken) => {
         console.log(me);
         dispatch({ type: GET_ME, payload: me });
         if (me.role === "CUSTOMER") {
-          getMyCart(myToken);
+          dispatch(getMyCart(myToken));
         }
       }
     } catch (error) {
@@ -293,6 +293,49 @@ export const addToCart = (myToken, body) => {
 
         // Invia un'azione per aggiornare lo stato del carrello
         dispatch({ type: ADD_TO_CART, payload: addedCartItem });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
+
+// order
+export const addOrder = (myToken, body) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + myToken,
+        },
+        body: JSON.stringify(body),
+      });
+      if (resp.ok) {
+        // Invia un'azione per aggiornare lo stato del carrello
+        dispatch(getMyCart(myToken));
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
+
+export const getMyOrders = (myToken) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/orders", {
+        headers: {
+          Authorization: "Bearer " + myToken,
+        },
+      });
+      if (resp.ok) {
+        let me = await resp.json();
+        console.log(me);
+        dispatch({ type: GET_MY_ORDER, payload: me });
       }
     } catch (error) {
       console.log(error);
