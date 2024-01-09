@@ -3,8 +3,18 @@ import Sidebar from "./Sidebar";
 import LineChartSales from "./charts/LineChartSales";
 import PieChartCategories from "./charts/PieChartCategories";
 import NavBar from "./NavBar";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getMyOrders } from "../redux/actions";
 
 const DashBoard = () => {
+  const orders = useSelector((state) => state.orders.content);
+  const myToken = useSelector((state) => state.userToken.content);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getMyOrders(myToken));
+  }, [orders.length]);
   return (
     <>
       <NavBar />
@@ -16,7 +26,9 @@ const DashBoard = () => {
               <Card className="card-style shadow">
                 <Card.Body>
                   <Card.Title>Guadagni</Card.Title>
-                  <Card.Text>$ 21,303.23</Card.Text>
+                  <Card.Text>
+                    {orders.length > 0 ? orders.reduce((sum, order) => sum + order.totalCost, 0) : 0}$
+                  </Card.Text>
                 </Card.Body>
                 <Card.Footer>ultimi 3 mesi</Card.Footer>
               </Card>
@@ -24,8 +36,8 @@ const DashBoard = () => {
             <Col>
               <Card className="card-style shadow">
                 <Card.Body>
-                  <Card.Title>Ordini</Card.Title>
-                  <Card.Text>1,200</Card.Text>
+                  <Card.Title>Ordini N</Card.Title>
+                  <Card.Text>{orders.length > 0 ? orders.length : 0}</Card.Text>
                 </Card.Body>
                 <Card.Footer>ultimi 3 mesi</Card.Footer>
               </Card>
@@ -49,7 +61,7 @@ const DashBoard = () => {
               </Card>
             </Col>
           </Row>
-          <Row className="my-2">
+          {/* <Row className="my-2">
             <Col lg={7}>
               <Card className="card-style shadow">
                 <Card.Body>
@@ -91,7 +103,7 @@ const DashBoard = () => {
               </Card>
             </Col>
             <Col lg={5}></Col>
-          </Row>
+          </Row> */}
         </div>
       </Container>
     </>
