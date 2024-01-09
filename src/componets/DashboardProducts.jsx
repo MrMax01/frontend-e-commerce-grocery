@@ -24,6 +24,7 @@ const DashboardProducts = () => {
             <Card.Title className="d-flex justify-content-between">
               <span>PRODUCTS</span>
               <Button
+                className="primary-button"
                 onClick={() => {
                   navigate("/dashboard/products/add");
                 }}
@@ -50,17 +51,23 @@ const DashboardProducts = () => {
                       <th scope="row">{product.name}</th>
                       <td>{product.category}</td>
                       <td>{product.quantity}kg</td>
-                      <td>{product.product_status}</td>
+                      <td
+                        className={
+                          product.product_status === "DISPONIBILE" ? "text-success fw-bold" : "text-danger fw-bold"
+                        }
+                      >
+                        {product.product_status}
+                      </td>
                       <td>${product.unit_price}/kg</td>
                       <td>
                         <i
-                          className="bi bi-pencil me-3"
+                          className="bi bi-pencil me-3 fs-5 hvr-grow"
                           onClick={() => {
                             navigate(`/dashboard/products/${product.id}`);
                           }}
                         ></i>
                         <i
-                          className="bi bi-trash3-fill"
+                          className="bi bi-trash3-fill secondary-color fs-5 hvr-grow"
                           onClick={() => {
                             dispatch(deleteMyProduct(myToken, product.id));
                           }}

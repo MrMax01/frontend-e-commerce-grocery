@@ -47,14 +47,14 @@ const Sidebar = () => {
           >
             <i className="bi bi-table fs-5 me-3"></i> <span>{isSidebarOpen ? "Products" : ""}</span>
           </a>
-          <a
+          {/* <a
             className="list-group-item my-2   sidebar-primary-button"
             onClick={() => {
               navigate("/dashboard/report");
             }}
           >
             <i className="bi bi-clipboard-data fs-5 me-3"></i> <span>{isSidebarOpen ? "Report" : ""}</span>
-          </a>
+          </a> */}
           <a
             className="list-group-item my-2   sidebar-primary-button"
             onClick={() => {

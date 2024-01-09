@@ -99,7 +99,9 @@ const DashBoardAddProduct = () => {
                   }}
                 />
               </Card.Text>
-              <Button type="submit">Salva Prodotto</Button>
+              <Button type="submit" className="primary-button">
+                Salva Prodotto
+              </Button>
             </Card.Body>
           </Form>
         </Card>

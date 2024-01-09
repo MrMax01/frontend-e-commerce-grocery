@@ -115,7 +115,7 @@ const DashboardUpdateProduct = () => {
                       </Form.Group>
                       <Form.Label>Descrizione prodotto</Form.Label>
                       <Form.Control
-                        as="textarea"
+                        type="text"
                         placeholder={savedProduct.description}
                         defaultValue={savedProduct.description}
                         onChange={(e) => {
@@ -141,7 +141,9 @@ const DashboardUpdateProduct = () => {
                         }}
                       />
                     </Card.Text>
-                    <Button type="submit">Salva Prodotto</Button>
+                    <Button type="submit" className="primary-button">
+                      Salva
+                    </Button>
                   </Card.Body>
                 </Form>
               </Card>
