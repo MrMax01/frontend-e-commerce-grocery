@@ -67,6 +67,7 @@ const DashboardUpdateProduct = () => {
           name: product.name,
           category: product.category,
           product_status: product.product_status,
+          unitOfMeasure: product.unitOfMeasure,
           description: product.description,
           unit_price: product.unit_price,
           quantity: product.quantity,
@@ -157,7 +158,20 @@ const DashboardUpdateProduct = () => {
                           setSavedProduct({ ...savedProduct, description: e.target.value });
                         }}
                       />
-                      <Form.Label>Costo al kg</Form.Label>
+                      <Form.Group className="mb-3" controlId="formBasicRegion">
+                        <Form.Label>Unità di misura</Form.Label>
+                        <Form.Select
+                          defaultValue={savedProduct.unitOfMeasure}
+                          onChange={(e) => {
+                            console.log(e.target.value);
+                            setSavedProduct({ ...savedProduct, unitOfMeasure: e.target.value });
+                          }}
+                        >
+                          <option value="KG">KG</option>
+                          <option value="PZ">PZ</option>
+                        </Form.Select>
+                      </Form.Group>
+                      <Form.Label>Costo al kg o al Pz</Form.Label>
                       <Form.Control
                         type="text"
                         placeholder={savedProduct.unit_price}

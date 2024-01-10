@@ -60,6 +60,7 @@ const NavBar = () => {
             <Nav className=" d-flex justify-content-between w-100">
               <Form className="d-flex w-75">
                 <Form.Control
+                  className="me-2"
                   type="text"
                   placeholder="search..."
                   onChange={(e) => {
@@ -67,7 +68,7 @@ const NavBar = () => {
                   }}
                 />
                 <Button
-                  variant="outline-success"
+                  className="primary-button"
                   onClick={() => {
                     navigation(`/product/all/?q=${query}`);
                   }}

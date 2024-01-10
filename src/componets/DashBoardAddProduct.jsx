@@ -13,6 +13,7 @@ const DashBoardAddProduct = () => {
     description: "",
     unit_price: "",
     quantity: "",
+    unitOfMeasure: "",
   });
   const myToken = useSelector((state) => state.userToken.content);
 
@@ -82,7 +83,19 @@ const DashBoardAddProduct = () => {
                     setSavedProduct({ ...savedProduct, description: e.target.value });
                   }}
                 />
-                <Form.Label>Costo al kg</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicRegion">
+                  <Form.Label>Unità di misura</Form.Label>
+                  <Form.Select
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      setSavedProduct({ ...savedProduct, unitOfMeasure: e.target.value });
+                    }}
+                  >
+                    <option value="KG">KG</option>
+                    <option value="PZ">PZ</option>
+                  </Form.Select>
+                </Form.Group>
+                <Form.Label>Costo al kg o al pz</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="price"
