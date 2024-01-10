@@ -28,6 +28,7 @@ function App() {
           <Route path="/dashboard/orders" element={<DashboardOrders />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/product/:category" element={<ProductPage />} />
+          <Route path="/product/:category/*" element={<ProductPage />} />
           <Route path="/productDetail/:productId" element={<ProductDetails />} />
           <Route path="/mycart" element={<MyCart />} />
         </Routes>

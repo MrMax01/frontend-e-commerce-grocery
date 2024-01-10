@@ -2,8 +2,8 @@ import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import NavBar from "./NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getProducts, getProductsOfCategory } from "../redux/actions";
-import { useNavigate, useParams } from "react-router-dom";
+import { getProducts, getProductsOfCategory, getProductsQuery } from "../redux/actions";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const ProductPage = () => {
   const navigate = useNavigate();
@@ -11,89 +11,98 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const lastProducts = useSelector((state) => state.products.content);
   const myToken = useSelector((state) => state.userToken.content);
+  const location = useLocation();
+  const query = new URLSearchParams(location.search).get("q");
 
   useEffect(() => {
-    switch (category) {
-      case "frutta":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria FRUTTA
-        console.log("Categoria: Frutta");
-        break;
-      case "verdura":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria VERDURA
-        console.log("Categoria: Verdura");
-        break;
-      case "carne":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria CARNE
-        console.log("Categoria: Carne");
-        break;
-      case "pesce":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria PESCE
-        console.log("Categoria: Pesce");
-        break;
-      case "latte":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria LATTE
-        console.log("Categoria: Latte");
-        break;
-      case "formaggio":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria FORMAGGIO
-        console.log("Categoria: Formaggio");
-        break;
-      case "uova":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria UOVA
-        console.log("Categoria: Uova");
-        break;
-      case "pasta":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria PASTA
-        console.log("Categoria: Pasta");
-        break;
-      case "riso":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria RISO
-        console.log("Categoria: Riso");
-        break;
-      case "cereali":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria CEREALI
-        console.log("Categoria: Cereali");
-        break;
-      case "legumi":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria LEGUMI
-        console.log("Categoria: Legumi");
-        break;
-      case "bevande":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria BEVANDE
-        console.log("Categoria: Bevande");
-        break;
-      case "olio":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria OLIO
-        console.log("Categoria: Olio");
-        break;
-      case "aceto":
-        dispatch(getProductsOfCategory(category.toUpperCase()));
-        // Fai qualcosa per la categoria ACETO
-        console.log("Categoria: Aceto");
-        break;
-      case "all":
-        // Fai qualcosa per la categoria ACETO
-        dispatch(getProducts());
-        break;
-      default:
-        console.log("Categoria non valida");
+    console.log(query);
+    if (query === "" || query === null) {
+      switch (category) {
+        case "frutta":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria FRUTTA
+          console.log("Categoria: Frutta");
+          break;
+        case "verdura":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria VERDURA
+          console.log("Categoria: Verdura");
+          break;
+        case "carne":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria CARNE
+          console.log("Categoria: Carne");
+          break;
+        case "pesce":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria PESCE
+          console.log("Categoria: Pesce");
+          break;
+        case "latte":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria LATTE
+          console.log("Categoria: Latte");
+          break;
+        case "formaggio":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria FORMAGGIO
+          console.log("Categoria: Formaggio");
+          break;
+        case "uova":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria UOVA
+          console.log("Categoria: Uova");
+          break;
+        case "pasta":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria PASTA
+          console.log("Categoria: Pasta");
+          break;
+        case "riso":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria RISO
+          console.log("Categoria: Riso");
+          break;
+        case "cereali":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria CEREALI
+          console.log("Categoria: Cereali");
+          break;
+        case "legumi":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria LEGUMI
+          console.log("Categoria: Legumi");
+          break;
+        case "bevande":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria BEVANDE
+          console.log("Categoria: Bevande");
+          break;
+        case "olio":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria OLIO
+          console.log("Categoria: Olio");
+          break;
+        case "aceto":
+          dispatch(getProductsOfCategory(category.toUpperCase()));
+          // Fai qualcosa per la categoria ACETO
+          console.log("Categoria: Aceto");
+          break;
+        case "all":
+          console.log(query);
+
+          dispatch(getProducts());
+
+          break;
+        default:
+          console.log("Categoria non valida");
+      }
+    } else {
+      dispatch(getProductsQuery(query));
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category]);
+  }, [category, query]);
   return (
     <>
       <NavBar />

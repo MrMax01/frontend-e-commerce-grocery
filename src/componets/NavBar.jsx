@@ -2,7 +2,7 @@ import { Badge, Button, Col, Container, Form, Modal, Nav, NavDropdown, Navbar, R
 import logo from "../assets/logo.png";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearMyProfile, clearToken, fetchMyProfile, getMyCart, login } from "../redux/actions";
+import { clearMyProfile, clearToken, fetchMyProfile, getMyCart, getProductsQuery, login } from "../redux/actions";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
@@ -17,6 +17,8 @@ const NavBar = () => {
 
   const [userLogin, setUserLogin] = useState({ email: "", password: "" });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [query, setQuery] = useState("");
+
   const dispatch = useDispatch();
   const handleSumbit = (e) => {
     e.preventDefault();
@@ -57,8 +59,21 @@ const NavBar = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className=" d-flex justify-content-between w-100">
               <Form className="d-flex w-75">
-                <Form.Control type="text" placeholder="search..." />
-                <Button variant="outline-success">Search</Button>
+                <Form.Control
+                  type="text"
+                  placeholder="search..."
+                  onChange={(e) => {
+                    setQuery(e.target.value);
+                  }}
+                />
+                <Button
+                  variant="outline-success"
+                  onClick={() => {
+                    navigation(`/product/all/?q=${query}`);
+                  }}
+                >
+                  Search
+                </Button>
               </Form>
               <div className="d-flex justify-content-center align-items-center ">
                 {myProfile ? (

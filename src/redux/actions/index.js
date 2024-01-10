@@ -12,6 +12,8 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const ADD_ORDER = "ADD_ORDER";
 export const GET_MY_ORDER = "GET_MY_ORDER";
+export const ADD_QUERY = "ADD_QUERY";
+export const DELETE_QUERY = "DELETE_QUERY";
 
 export const login = (emailPAss) => {
   return async (dispatch, getState) => {
@@ -185,6 +187,21 @@ export const getProducts = () => {
         let products = await resp.json();
         console.log(products);
         dispatch({ type: GET_PRODUCTS, payload: products.content });
+      }
+    } catch (error) {
+      console.log(error);
+      //alert("errore reperimento utente");
+    }
+  };
+};
+export const getProductsQuery = (query) => {
+  return async (dispatch, getState) => {
+    try {
+      let resp = await fetch("http://localhost:8080/products/nomeProdotto?name=" + query);
+      if (resp.ok) {
+        let products = await resp.json();
+        console.log(products);
+        dispatch({ type: GET_PRODUCTS, payload: products });
       }
     } catch (error) {
       console.log(error);
