@@ -52,52 +52,59 @@ const ProductDetails = () => {
                 {/* {item.supplier.company_name} */}
               </ListGroup.Item>
             </ListGroup>
+
             {myProfile.role === "CUSTOMER" && (
               <Card.Body>
-                <Form>
-                  <Form.Label>quantità che hai bisogno</Form.Label>
-                  <div className="d-flex align-items-center mb-3">
-                    <div className="me-2">
-                      <Form.Control
-                        type="number"
-                        placeholder="example 100.5"
-                        onChange={(e) => {
-                          setChangeQuantity(e.target.value);
-                          setValidationError("");
+                {item.product_status === "ESAURITO" ? (
+                  <Alert variant="danger" className="text-danger">
+                    {item.product_status}
+                  </Alert>
+                ) : (
+                  <Form>
+                    <Form.Label>quantità che hai bisogno</Form.Label>
+                    <div className="d-flex align-items-center mb-3">
+                      <div className="me-2">
+                        <Form.Control
+                          type="number"
+                          placeholder="example 100.5"
+                          onChange={(e) => {
+                            setChangeQuantity(e.target.value);
+                            setValidationError("");
+                          }}
+                          disabled={myToken === null}
+                        />
+                        {validationError && (
+                          <Alert variant="danger" className="text-danger">
+                            {validationError}
+                          </Alert>
+                        )}
+                      </div>
+                      <div>
+                        <span>kg</span>
+                      </div>
+                    </div>
+                    {isProductInCart ? (
+                      <>
+                        <span className="text-success bolder">Aggiunto</span>
+                        <i className="bi bi-check-circle-fill text-success"></i>
+                      </>
+                    ) : (
+                      <Button
+                        className="secondary-button"
+                        disabled={myToken === null || changeQuantity === 0 || changeQuantity > item.quantity}
+                        onClick={() => {
+                          if (!isNumeric(changeQuantity)) {
+                            setValidationError("Inserisci un numero valido per il costo.");
+                            return;
+                          }
+                          dispatch(addToCart(myToken, { productId: productId, quantity: changeQuantity }));
                         }}
-                        disabled={myToken === null}
-                      />
-                      {validationError && (
-                        <Alert variant="danger" className="text-danger">
-                          {validationError}
-                        </Alert>
-                      )}
-                    </div>
-                    <div>
-                      <span>kg</span>
-                    </div>
-                  </div>
-                  {isProductInCart ? (
-                    <>
-                      <span className="text-success bolder">Aggiunto</span>
-                      <i className="bi bi-check-circle-fill text-success"></i>
-                    </>
-                  ) : (
-                    <Button
-                      className="secondary-button"
-                      disabled={myToken === null || changeQuantity === 0 || changeQuantity > item.quantity}
-                      onClick={() => {
-                        if (!isNumeric(changeQuantity)) {
-                          setValidationError("Inserisci un numero valido per il costo.");
-                          return;
-                        }
-                        dispatch(addToCart(myToken, { productId: productId, quantity: changeQuantity }));
-                      }}
-                    >
-                      Aggiungi al carrello
-                    </Button>
-                  )}
-                </Form>
+                      >
+                        Aggiungi al carrello
+                      </Button>
+                    )}
+                  </Form>
+                )}
               </Card.Body>
             )}
 

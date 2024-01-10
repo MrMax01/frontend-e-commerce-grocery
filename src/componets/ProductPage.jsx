@@ -120,6 +120,10 @@ const ProductPage = () => {
                       navigate(`/productDetail/${product.id}`);
                     }}
                   />
+                  {product.product_status === "ESAURITO" && (
+                    <span class="badge text-bg-danger">{product.product_status}</span>
+                  )}
+
                   <Card.Body>
                     <Card.Title
                       className="cursor-pointer"

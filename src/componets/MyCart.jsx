@@ -1,4 +1,4 @@
-import { Alert, Button, Card, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import { Alert, Button, Card, Col, Container, Form, InputGroup, Modal, Row } from "react-bootstrap";
 import NavBar from "./NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -8,6 +8,8 @@ const MyCart = () => {
   const myToken = useSelector((state) => state.userToken.content);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.content);
+  const myProfile = useSelector((state) => state.me.content);
+
   const ordersItems = useSelector((state) => state.orders.content);
   const [changeQuantity, setChangeQuantity] = useState({ productId: "", quantity: "" });
   const [total, setTotal] = useState(0);
@@ -80,9 +82,66 @@ const MyCart = () => {
               </div>
             </Col>
             <Col className="text-center">
-              <h3>
-                TOTALE: <br />€ 0
-              </h3>
+              <Form>
+                <div className="mb-3">
+                  <Form.Label className="dis fw-bold mb-2">Email address</Form.Label>
+                  <Form.Control type="email" />
+                </div>
+
+                <div>
+                  <Form.Label className="dis fw-bold mb-2">Card details</Form.Label>
+                  <Row className="g-2">
+                    <Col xs="auto" className="d-flex align-items-center">
+                      <div className="fab fa-cc-visa ps-3"></div>
+                    </Col>
+                    <Col xs="auto" className="w-100">
+                      <InputGroup>
+                        <Form.Control type="text" placeholder="Card Details" />
+                        <InputGroup.Text className="w-50">
+                          <Form.Control type="text" placeholder="MM/YY" />
+                          <Form.Control type="password" maxLength={3} placeholder="CVV" />
+                        </InputGroup.Text>
+                      </InputGroup>
+                    </Col>
+                  </Row>
+
+                  <div className="my-3 cardname">
+                    <Form.Label className="dis fw-bold mb-2">Propietario carta</Form.Label>
+                    <Form.Control type="text" />
+                  </div>
+
+                  <div className="address">
+                    <div className="d-flex flex-column dis">
+                      <div className="d-flex align-items-center justify-content-between mb-2">
+                        <p className="fw-bold">Total</p>
+                        <p className="fw-bold">
+                          <span className="fas fa-dollar-sign"></span>
+                          {cartItems.reduce(
+                            (totalQuantity, cartItem) =>
+                              totalQuantity + cartItem.quantity * cartItem.product.unit_price,
+                            0
+                          )}
+                        </p>
+                      </div>
+                      <Button
+                        className="btn btn-primary mt-2 primary-button"
+                        onClick={() => {
+                          dispatch(addOrder(myToken, cartItems));
+                        }}
+                      >
+                        Pay<span className="fas fa-dollar-sign px-1"></span>
+                        {cartItems
+                          .reduce(
+                            (totalQuantity, cartItem) =>
+                              totalQuantity + cartItem.quantity * cartItem.product.unit_price,
+                            0
+                          )
+                          .toFixed(2)}
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Form>
             </Col>
           </>
         ) : (
@@ -112,7 +171,9 @@ const MyCart = () => {
                       <Col className="text-truncate">
                         <div>
                           <p className="m-0 ">{cart.product.name}</p>
-                          <p className="m-0 ">{cart.product.category}</p>
+                          <p className="m-0 ">
+                            €{cart.product.unit_price}/{cart.product.unitOfMeasure}
+                          </p>
                           <p className="m-0 ">max: {cart.product.quantity}kg</p>
                         </div>
                       </Col>
@@ -194,7 +255,69 @@ const MyCart = () => {
                 ))}
             </Col>
             <Col className="text-center">
-              <h3>
+              <Form>
+                <div className="mb-3">
+                  <Form.Label className="dis fw-bold mb-2">Email address</Form.Label>
+                  <Form.Control type="email" />
+                </div>
+
+                <div>
+                  <Form.Label className="dis fw-bold mb-2">Card details</Form.Label>
+                  <Row className="g-2">
+                    <Col xs="auto" className="d-flex align-items-center">
+                      <div className="fab fa-cc-visa ps-3"></div>
+                    </Col>
+                    <Col xs="auto" className="w-100">
+                      <InputGroup>
+                        <Form.Control type="text" placeholder="Card Details" />
+                        <InputGroup.Text className="w-50">
+                          <Form.Control type="text" placeholder="MM/YY" />
+                          <Form.Control type="password" maxLength={3} placeholder="CVV" />
+                        </InputGroup.Text>
+                      </InputGroup>
+                    </Col>
+                  </Row>
+
+                  <div className="my-3 cardname">
+                    <Form.Label className="dis fw-bold mb-2">Propietario carta</Form.Label>
+                    <Form.Control type="text" />
+                  </div>
+
+                  <div className="address">
+                    <div className="d-flex flex-column dis">
+                      <div className="d-flex align-items-center justify-content-between mb-2">
+                        <p className="fw-bold">Total</p>
+                        <p className="fw-bold">
+                          <span>€</span>
+                          {cartItems
+                            .reduce(
+                              (totalQuantity, cartItem) =>
+                                totalQuantity + cartItem.quantity * cartItem.product.unit_price,
+                              0
+                            )
+                            .toFixed(2)}
+                        </p>
+                      </div>
+                      <Button
+                        className="btn btn-primary mt-2 primary-button"
+                        onClick={() => {
+                          dispatch(addOrder(myToken, cartItems));
+                        }}
+                      >
+                        Pay<span className="px-1">€</span>
+                        {cartItems
+                          .reduce(
+                            (totalQuantity, cartItem) =>
+                              totalQuantity + cartItem.quantity * cartItem.product.unit_price,
+                            0
+                          )
+                          .toFixed(2)}
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Form>
+              {/* <h3>
                 TOTALE: <br />€
                 {cartItems.reduce(
                   (totalQuantity, cartItem) => totalQuantity + cartItem.quantity * cartItem.product.unit_price,
@@ -207,7 +330,7 @@ const MyCart = () => {
                 }}
               >
                 Buy it
-              </Button>
+              </Button> */}
             </Col>
           </>
         )}
@@ -250,7 +373,7 @@ const MyCart = () => {
                 <Col>{order.orderStatus}</Col>
                 <Col>
                   {order.quantity}
-                  {order.unitOfMeasure}
+                  {order.product.unitOfMeasure}
                 </Col>
                 <Col>{order.totalCost}€</Col>
               </Row>

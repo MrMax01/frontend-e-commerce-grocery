@@ -113,14 +113,12 @@ const NavBar = () => {
                         <NavDropdown.Item>
                           <Row>
                             <Col xs={3}>
-                              <img alt="me" src={myProfile.image} width={80} height={80} className="rounded-circle" />
+                              <img alt="me" src={myProfile.avatar} width={80} height={80} className="rounded-circle" />
                             </Col>
                             <Col xs={7}>
                               <Row className="text-start">
                                 <div className="d-flex flex-column mt-3 p-0 ps-1">
-                                  <Link to="/me">
-                                    {myProfile.surname} {myProfile.name}
-                                  </Link>
+                                  {myProfile.surname} {myProfile.name}
                                   <div>{myProfile.company_name}</div>
                                 </div>
                               </Row>
@@ -128,7 +126,7 @@ const NavBar = () => {
                           </Row>
                         </NavDropdown.Item>
                         <NavDropdown.Item>
-                          <Button
+                          {/* <Button
                             variant="outline-primary"
                             className="w-100 rounded-pill"
                             onClick={() => {
@@ -136,14 +134,14 @@ const NavBar = () => {
                             }}
                           >
                             Visualizza Profilo
-                          </Button>
+                          </Button> */}
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Header>Account</NavDropdown.Header>
-                        <NavDropdown.Item>Prova Premium gratis</NavDropdown.Item>
-                        <NavDropdown.Item>Impostazioni & privecy</NavDropdown.Item>
-                        <NavDropdown.Item>Guida</NavDropdown.Item>
-                        <NavDropdown.Item>Lingua</NavDropdown.Item>
+                        {/* <NavDropdown.Item>Prova Premium gratis</NavDropdown.Item> */}
+                        <NavDropdown.Item>Impostazioni</NavDropdown.Item>
+                        {/* <NavDropdown.Item>Guida</NavDropdown.Item> */}
+                        {/* <NavDropdown.Item>Lingua</NavDropdown.Item> */}
                         <NavDropdown.Divider />
                         {myProfile.role === "SUPPLIER" && (
                           <>
