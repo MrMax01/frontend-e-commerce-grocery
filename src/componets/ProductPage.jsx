@@ -149,8 +149,9 @@ const ProductPage = () => {
               </Col>
             ))
           ) : (
-            <Card>
-              <h1>LOADING...</h1>
+            <Card className="text-center w-100">
+              <i class="bi bi-bag-x-fill fs-1 me-2 secondary-color"></i>
+              <span className="fz-1">NESSUN PRODOTTO TROVATO</span>
             </Card>
           )}
         </Row>

@@ -36,6 +36,7 @@ const DashboardProducts = () => {
             <table className="table">
               <thead>
                 <tr>
+                  <th scope="col">PHOTO</th>
                   <th scope="col">NAME</th>
                   <th scope="col">CATEGORY</th>
                   <th scope="col">QUANTITY</th>
@@ -48,7 +49,10 @@ const DashboardProducts = () => {
                 {myProducts.length > 0 ? (
                   myProducts.map((product, i) => (
                     <tr key={product.id}>
-                      <th scope="row">{product.name}</th>
+                      <th>
+                        <Card.Img src={product.photo} style={{ maxWidth: "50px", maxHeight: "50px" }} />
+                      </th>
+                      <th>{product.name}</th>
                       <td>{product.category}</td>
                       <td>
                         {product.quantity}

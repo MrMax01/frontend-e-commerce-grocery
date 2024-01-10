@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { addMyProduct, getProductDetail, pictureForMyProduct, updateMyProduct } from "../redux/actions";
 import NavBar from "./NavBar";
-import { Button, Card, Col, Container, Form, Image, ListGroup, Modal, Row } from "react-bootstrap";
+import { Alert, Button, Card, Col, Container, Form, Image, ListGroup, Modal, Row } from "react-bootstrap";
 import Sidebar from "./Sidebar";
 import { useEffect, useRef, useState } from "react";
 
@@ -23,6 +23,11 @@ const DashboardUpdateProduct = () => {
   const handleShow = () => {
     setShow(true);
   };
+  const [validationError, setValidationError] = useState("");
+  const isNumeric = (value) => {
+    return !isNaN(parseFloat(value)) && isFinite(value);
+  };
+
   const previewImg = (event) => {
     console.log(event);
     const [file] = event.target.files;
@@ -48,6 +53,10 @@ const DashboardUpdateProduct = () => {
   };
   const handleSumbit = (e) => {
     e.preventDefault();
+    if (!isNumeric(savedProduct.unit_price)) {
+      setValidationError("Inserisci un numero valido per il costo.");
+      return;
+    }
     dispatch(updateMyProduct(myToken, savedProduct, productId));
     console.log(savedProduct);
   };
@@ -178,8 +187,14 @@ const DashboardUpdateProduct = () => {
                         defaultValue={savedProduct.unit_price}
                         onChange={(e) => {
                           setSavedProduct({ ...savedProduct, unit_price: e.target.value });
+                          setValidationError("");
                         }}
                       />
+                      {validationError && (
+                        <Alert variant="danger" className="text-danger">
+                          {validationError}
+                        </Alert>
+                      )}
                       <Form.Label>Quantità disponibile</Form.Label>
                       <Form.Control
                         type="text"

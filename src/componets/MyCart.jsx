@@ -11,6 +11,10 @@ const MyCart = () => {
   const ordersItems = useSelector((state) => state.orders.content);
   const [changeQuantity, setChangeQuantity] = useState({ productId: "", quantity: "" });
   const [total, setTotal] = useState(0);
+  const [validationError, setValidationError] = useState("");
+  const isNumeric = (value) => {
+    return !isNaN(parseFloat(value)) && isFinite(value);
+  };
 
   //   const handelChange = (propertyName, propertyValue) => {
   //     setChangeQuantity({ ...changeQuantity, [propertyName]: propertyValue });
@@ -19,6 +23,10 @@ const MyCart = () => {
   const [showModal, setShowModal] = useState(null);
   const handleSumbit = () => {
     let dataToUpdate = { quantity: changeQuantity.quantity };
+    if (!isNumeric(dataToUpdate.quantity)) {
+      setValidationError("Inserisci un numero valido per il costo.");
+      return;
+    }
     fetch("http://localhost:8080/cart/" + changeQuantity.id, {
       method: "PUT",
       headers: {
@@ -134,8 +142,14 @@ const MyCart = () => {
                                           placeholder={cart.quantity}
                                           onChange={(e) => {
                                             setChangeQuantity({ id: cart.id, quantity: e.target.value });
+                                            setValidationError("");
                                           }}
                                         />
+                                        {validationError && (
+                                          <Alert variant="danger" className="text-danger">
+                                            {validationError}
+                                          </Alert>
+                                        )}
                                       </div>
                                       <div>
                                         <span>kg</span>
