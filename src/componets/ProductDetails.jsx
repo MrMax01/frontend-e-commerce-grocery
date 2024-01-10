@@ -35,10 +35,15 @@ const ProductDetails = () => {
               <Card.Text>{item.description}</Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
-              <ListGroup.Item>${item.unit_price}/kg</ListGroup.Item>
-              <ListGroup.Item>quantità massima: {item.quantity} kg</ListGroup.Item>
               <ListGroup.Item>
-                pubblicato: {item.publicatedAt} da:
+                <span className="me-2">€</span>
+                {item.unit_price}/{item.unitOfMeasure}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                quantità massima: {item.quantity} {item.unitOfMeasure}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                pubblicato: {item.publicatedAt}
                 {/* {item.supplier.company_name} */}
               </ListGroup.Item>
             </ListGroup>

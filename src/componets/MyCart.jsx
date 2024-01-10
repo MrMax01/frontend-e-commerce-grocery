@@ -73,7 +73,7 @@ const MyCart = () => {
             </Col>
             <Col className="text-center">
               <h3>
-                TOTALE: <br />$ 0
+                TOTALE: <br />€ 0
               </h3>
             </Col>
           </>
@@ -162,7 +162,7 @@ const MyCart = () => {
                         </div>
                       </Col>
                       <Col>
-                        <span>${cart.product.unit_price * cart.quantity}</span>
+                        <span>€{cart.product.unit_price * cart.quantity}</span>
                       </Col>
                       <Col>
                         <i
@@ -181,7 +181,7 @@ const MyCart = () => {
             </Col>
             <Col className="text-center">
               <h3>
-                TOTALE: <br />$
+                TOTALE: <br />€
                 {cartItems.reduce(
                   (totalQuantity, cartItem) => totalQuantity + cartItem.quantity * cartItem.product.unit_price,
                   0
@@ -234,8 +234,11 @@ const MyCart = () => {
                 </Col>
                 <Col>{order.product.name}</Col>
                 <Col>{order.orderStatus}</Col>
-                <Col>{order.quantity}kg</Col>
-                <Col>{order.totalCost}$</Col>
+                <Col>
+                  {order.quantity}
+                  {order.unitOfMeasure}
+                </Col>
+                <Col>{order.totalCost}€</Col>
               </Row>
             ))}
           </>

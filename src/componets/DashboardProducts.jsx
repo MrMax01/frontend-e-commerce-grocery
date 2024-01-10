@@ -50,7 +50,10 @@ const DashboardProducts = () => {
                     <tr key={product.id}>
                       <th scope="row">{product.name}</th>
                       <td>{product.category}</td>
-                      <td>{product.quantity}kg</td>
+                      <td>
+                        {product.quantity}
+                        {product.unitOfMeasure}
+                      </td>
                       <td
                         className={
                           product.product_status === "DISPONIBILE" ? "text-success fw-bold" : "text-danger fw-bold"
@@ -58,7 +61,9 @@ const DashboardProducts = () => {
                       >
                         {product.product_status}
                       </td>
-                      <td>${product.unit_price}/kg</td>
+                      <td>
+                        <span className="me-1">€</span> {product.unit_price}/{product.unitOfMeasure}
+                      </td>
                       <td>
                         <i
                           className="bi bi-pencil me-3 fs-5 hvr-grow"

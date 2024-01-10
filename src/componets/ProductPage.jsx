@@ -129,7 +129,9 @@ const ProductPage = () => {
                     >
                       {product.name}
                     </Card.Title>
-                    <Card.Title>${product.unit_price}/kg</Card.Title>
+                    <Card.Title>
+                      €{product.unit_price}/{product.unitOfMeasure}
+                    </Card.Title>
                     <Card.Text>{product.description}</Card.Text>
                     <button
                       className="detail-button learn-more"

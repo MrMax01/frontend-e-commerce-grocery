@@ -1,4 +1,4 @@
-import { Button, Card, Container, Form, ListGroup } from "react-bootstrap";
+import { Alert, Button, Card, Container, Form, ListGroup } from "react-bootstrap";
 import NavBar from "./NavBar";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
@@ -16,11 +16,31 @@ const DashBoardAddProduct = () => {
     unitOfMeasure: "",
   });
   const myToken = useSelector((state) => state.userToken.content);
-
+  const [validationErrors, setValidationErrors] = useState({
+    unitPrice: "",
+    quantity: "",
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isNumeric = (value) => {
+    return !isNaN(parseFloat(value)) && isFinite(value);
+  };
   const handleSumbit = (e) => {
     e.preventDefault();
+    if (!isNumeric(savedProduct.unit_price)) {
+      setValidationErrors({
+        ...validationErrors,
+        unitPrice: "Inserisci un numero valido per il costo.No lettere e al posto della virgola il punto.",
+      });
+      return;
+    }
+    if (!isNumeric(savedProduct.quantity)) {
+      setValidationErrors({
+        ...validationErrors,
+        quantity: "Inserisci un numero valido per il costo.No lettere e al posto della virgola il punto.",
+      });
+      return;
+    }
     dispatch(addMyProduct(myToken, savedProduct))
       .then(() => {
         // L'aggiunta del prodotto è andata a buon fine, esegui il redirect
@@ -59,6 +79,7 @@ const DashBoardAddProduct = () => {
                       setSavedProduct({ ...savedProduct, category: e.target.value });
                     }}
                   >
+                    <option value="">--Select-category--</option>
                     <option value="FRUTTA">Frutta</option>
                     <option value="VERDURA">Verdura</option>
                     <option value="CARNE">Carne</option>
@@ -91,26 +112,39 @@ const DashBoardAddProduct = () => {
                       setSavedProduct({ ...savedProduct, unitOfMeasure: e.target.value });
                     }}
                   >
+                    <option value="">--Select-Unit--</option>
                     <option value="KG">KG</option>
                     <option value="PZ">PZ</option>
                   </Form.Select>
                 </Form.Group>
-                <Form.Label>Costo al kg o al pz</Form.Label>
+                <Form.Label>Costo Euro al kg o al pz</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="price"
                   onChange={(e) => {
                     setSavedProduct({ ...savedProduct, unit_price: e.target.value });
+                    setValidationErrors({ ...validationErrors, unitPrice: "" });
                   }}
                 />
+                {validationErrors.unitPrice && (
+                  <Alert variant="danger" className="text-danger">
+                    {validationErrors.unitPrice}
+                  </Alert>
+                )}
                 <Form.Label>Quantità disponibile</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="quantity avaible"
                   onChange={(e) => {
                     setSavedProduct({ ...savedProduct, quantity: e.target.value });
+                    setValidationErrors({ ...validationErrors, quantity: "" });
                   }}
                 />
+                {validationErrors.quantity && (
+                  <Alert variant="danger" className="text-danger">
+                    {validationErrors.quantity}
+                  </Alert>
+                )}
               </Card.Text>
               <Button type="submit" className="primary-button">
                 Salva Prodotto

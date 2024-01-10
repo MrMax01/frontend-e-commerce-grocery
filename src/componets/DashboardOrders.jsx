@@ -39,7 +39,7 @@ const DashboardOrders = () => {
                       <td>{order.created_at}</td>
                       <td>{order.customer.email}</td>
                       <td>{order.orderStatus}</td>
-                      <td>{order.totalCost}$</td>
+                      <td>{order.totalCost} €</td>
                     </tr>
                   ))
                 ) : (
