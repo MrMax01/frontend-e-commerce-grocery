@@ -53,7 +53,7 @@ const ProductDetails = () => {
               </ListGroup.Item>
             </ListGroup>
 
-            {myProfile.role === "CUSTOMER" && (
+            {myProfile !== null && myProfile.role === "CUSTOMER" && (
               <Card.Body>
                 {item.product_status === "ESAURITO" ? (
                   <Alert variant="danger" className="text-danger">

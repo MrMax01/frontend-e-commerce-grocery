@@ -27,7 +27,7 @@ const DashBoard = () => {
                 <Card.Body>
                   <Card.Title>Guadagni</Card.Title>
                   <Card.Text>
-                    {orders.length > 0 ? orders.reduce((sum, order) => sum + order.totalCost, 0) : 0}€
+                    {orders.length > 0 ? orders.reduce((sum, order) => sum + order.totalCost, 0).toFixed(2) : 0}€
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>ultimi 3 mesi</Card.Footer>

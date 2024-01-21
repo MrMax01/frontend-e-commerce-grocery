@@ -13,6 +13,7 @@ import ProductDetails from "./componets/ProductDetails";
 import MyCart from "./componets/MyCart";
 import DashBoardAddProduct from "./componets/DashBoardAddProduct";
 import DashboardUpdateProduct from "./componets/DashboardUpdateProduct";
+import ProfileSettings from "./componets/ProfileSettings";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/product/:category/*" element={<ProductPage />} />
           <Route path="/productDetail/:productId" element={<ProductDetails />} />
           <Route path="/mycart" element={<MyCart />} />
+          <Route path="/settings" element={<ProfileSettings />} />
         </Routes>
       </BrowserRouter>
     </div>

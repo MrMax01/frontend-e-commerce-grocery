@@ -210,7 +210,7 @@ const NavBar = () => {
                   <Link className="d-block myLinks" to="/product/riso">
                     Riso
                   </Link>
-                  <Link className="d-block myLinks" to="/product/cerareali">
+                  <Link className="d-block myLinks" to="/product/cereali">
                     Cereali
                   </Link>
                   <Link className="d-block myLinks" to="/product/legumi">
@@ -265,7 +265,7 @@ const NavBar = () => {
             <Link className="myLinks me-3" to="/product/riso">
               Riso
             </Link>
-            <Link className="myLinks me-3" to="/product/cerareali">
+            <Link className="myLinks me-3" to="/product/cereali">
               Cereali
             </Link>
             <Link className="myLinks me-3" to="/product/legumi">
