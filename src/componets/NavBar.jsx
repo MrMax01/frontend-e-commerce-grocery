@@ -28,7 +28,7 @@ const NavBar = () => {
     // Rimuovi il token dallo stato Redux
     dispatch(clearMyProfile());
     dispatch(clearToken());
-    navigation("/");
+    navigation("/frontend-e-commerce-grocery");
 
     // Rimuovi il token dal localStorage
     localStorage.removeItem("token");
@@ -50,7 +50,7 @@ const NavBar = () => {
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container className="">
-          <Link to="/" className="myTitle me-2">
+          <Link to="/frontend-e-commerce-grocery" className="myTitle me-2">
             <img src={logo} alt="Bootstrap" width="40" height="40" className="me-2" />
             Grocery-Shop
           </Link>
