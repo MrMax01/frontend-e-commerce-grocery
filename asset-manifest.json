@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/frontend-e-commerce-grocery/static/css/main.1ca244bb.css",
-    "main.js": "/frontend-e-commerce-grocery/static/js/main.6cb54eba.js",
+    "main.js": "/frontend-e-commerce-grocery/static/js/main.2afd5c8c.js",
     "static/media/customer.png": "/frontend-e-commerce-grocery/static/media/customer.a2749a42eb1d78e049e4.png",
     "static/media/headerImg.png": "/frontend-e-commerce-grocery/static/media/headerImg.0231f4f6d21a90301bf4.png",
     "static/media/farmer.png": "/frontend-e-commerce-grocery/static/media/farmer.819d065f5a5f519391fa.png",
     "static/media/logo.png": "/frontend-e-commerce-grocery/static/media/logo.7d825afa819e3ecc0812.png",
     "index.html": "/frontend-e-commerce-grocery/index.html",
     "main.1ca244bb.css.map": "/frontend-e-commerce-grocery/static/css/main.1ca244bb.css.map",
-    "main.6cb54eba.js.map": "/frontend-e-commerce-grocery/static/js/main.6cb54eba.js.map"
+    "main.2afd5c8c.js.map": "/frontend-e-commerce-grocery/static/js/main.2afd5c8c.js.map"
   },
   "entrypoints": [
     "static/css/main.1ca244bb.css",
-    "static/js/main.6cb54eba.js"
+    "static/js/main.2afd5c8c.js"
   ]
 }
