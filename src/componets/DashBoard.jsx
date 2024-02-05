@@ -1,4 +1,4 @@
-import { Card, Col, Container, Navbar, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import Sidebar from "./Sidebar";
 import LineChartSales from "./charts/LineChartSales";
 import PieChartCategories from "./charts/PieChartCategories";

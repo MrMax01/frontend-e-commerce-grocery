@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addToCart, getMyCart, getProductDetail } from "../redux/actions";
+import { addToCart, getProductDetail } from "../redux/actions";
 import { Alert, Button, Card, Col, Container, Form, ListGroup, Row } from "react-bootstrap";
 import NavBar from "./NavBar";
 

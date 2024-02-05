@@ -8,11 +8,11 @@ const MyCart = () => {
   const myToken = useSelector((state) => state.userToken.content);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.content);
-  const myProfile = useSelector((state) => state.me.content);
+  // const myProfile = useSelector((state) => state.me.content);
 
   const ordersItems = useSelector((state) => state.orders.content);
   const [changeQuantity, setChangeQuantity] = useState({ productId: "", quantity: "" });
-  const [total, setTotal] = useState(0);
+  // const [total, setTotal] = useState(0);
   const [validationError, setValidationError] = useState("");
   const isNumeric = (value) => {
     return !isNaN(parseFloat(value)) && isFinite(value);

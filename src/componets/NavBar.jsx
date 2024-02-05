@@ -1,9 +1,9 @@
-import { Badge, Button, Col, Container, Form, Modal, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Modal, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearMyProfile, clearToken, fetchMyProfile, getMyCart, getProductsQuery, login } from "../redux/actions";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { clearMyProfile, clearToken, fetchMyProfile, login } from "../redux/actions";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const [show, setShow] = useState(false);

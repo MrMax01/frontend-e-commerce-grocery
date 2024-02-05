@@ -5,7 +5,7 @@ import supplier from "../assets/farmer.png";
 import customer from "../assets/customer.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { registrationCustomer, registrationSupplier } from "../redux/actions";
+// import { registrationCustomer, registrationSupplier } from "../redux/actions";
 
 const RegisterPage = () => {
   const [citta, setCitta] = useState([]);

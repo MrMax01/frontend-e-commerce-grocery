@@ -1,6 +1,6 @@
 import { Card, Container } from "react-bootstrap";
 import Sidebar from "./Sidebar";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyOrders } from "../redux/actions";
 import NavBar from "./NavBar";

@@ -1,19 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { addMyProduct, getProductDetail, pictureForMyProduct, updateMyProduct } from "../redux/actions";
+import { useParams } from "react-router-dom";
+import { pictureForMyProduct, updateMyProduct } from "../redux/actions";
 import NavBar from "./NavBar";
-import { Alert, Button, Card, Col, Container, Form, Image, ListGroup, Modal, Row } from "react-bootstrap";
+import { Alert, Button, Card, Col, Container, Form, Image, Modal, Row } from "react-bootstrap";
 import Sidebar from "./Sidebar";
 import { useEffect, useRef, useState } from "react";
 
 const DashboardUpdateProduct = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
-  const [changeQuantity, setChangeQuantity] = useState(0);
+  // const [changeQuantity, setChangeQuantity] = useState(0);
 
   const myCart = useSelector((state) => state.cart.content);
   const myToken = useSelector((state) => state.userToken.content);
-  const isProductInCart = myCart.some((cartItem) => cartItem.product.id === productId);
+  // const isProductInCart = myCart.some((cartItem) => cartItem.product.id === productId);
 
   const [savedProduct, setSavedProduct] = useState(null);
   const [urlImg, setUrlImg] = useState(null);
